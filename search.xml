@@ -8,7 +8,7 @@
       <link href="/2022/08/13/RL/00%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB/"/>
       <url>/2022/08/13/RL/00%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB/</url>
       
-        <content type="html"><![CDATA[<div class="fj-gallery"><p><img src="E:\Blog\source\img\00_RL.jpg"></p>          </div>]]></content>
+        <content type="html"><![CDATA[<p><img src="/img/RL/00_RL.jpg"></p>]]></content>
       
       
       <categories>
@@ -34,8 +34,8 @@
     
     <entry>
       <title>Latex数学公式</title>
-      <link href="/2022/08/13/0813/Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
-      <url>/2022/08/13/0813/Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
+      <link href="/2022/08/13/Latex/Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
+      <url>/2022/08/13/Latex/Latex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
       
         <content type="html"><![CDATA[<h1 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h1><p>$$<br>\delta,\lambda\<br>\Delta,\Lambda\<br>\Alpha,\Beta\<br>\phi,\varphi\<br>\epsilon,\varepsilon\<br>π<br>$$</p><p>Option + P &#x3D; π</p><h1 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h1><p>$$<br>a^2,a_1\<br>x^{y+z},p_{ij},p_ij\<br>x_i,x_{\rm i}\<br>\text{A B},\rm{A B}\<br>\text A B,\rm A B\<br>{\rm A} B\<br>$$</p><h1 id="分式与根式"><a href="#分式与根式" class="headerlink" title="分式与根式"></a>分式与根式</h1><p>$$<br>\frac{1}{2},\frac 1 2,\<br>\frac 1 {x+y}\<br>\frac{\dfrac 1 x +1}{y+1}<br>$$</p><p>$$<br>\sqrt 2,\sqrt{x+y},\sqrt[3]{x+y}<br>$$</p><h1 id="普通运算符"><a href="#普通运算符" class="headerlink" title="普通运算符"></a>普通运算符</h1><p>$$<br>+-\<br>\times,\cdot,\div\<br>\pm,\mp\<br>&lt;&gt;,\ge,\le,\gg,\ll,\ne,\approx,\equiv\<br>\cap,\cup,\in,\notin,\subset,\subseteq,\subsetneq,\subsetneqq,\varnothing\<br>\forall,\exists,\nexists\<br>\because,\therefore\<br>\mathbb R,\R,\Q,\N,\Z_+\<br>\mathcal F,\mathscr F\<br>$$</p><p>$$<br>\cdots,\vdots,\ddots<br>$$</p><p>$$<br>\infty,\partial,∂,\nabla,\propto,\degree<br>$$</p><p>option+D &#x3D; ∂<br>$$<br>\sin x,\sec x,\cosh x\<br>\log_2 x, \ln x, \lg x\<br>\lim{x \to 0} \frac x {\sin x}\<br>\lim\limits_{x \to 0} \frac x {\sin x}\<br>\max x<br>$$</p><p>$$<br>MSE(x)\<br>\text {MSE}(x)<br>$$</p><h1 id="大型运算符"><a href="#大型运算符" class="headerlink" title="大型运算符"></a>大型运算符</h1><p>$$<br>\sum,\prod\<br>\sum_i,\sum_{i&#x3D;0}^N\<br>\frac{\sum\limits_{i&#x3D;1}^n x_i}{\prod\limits_{i&#x3D;1}^n x_i}<br>$$</p><p>$$<br>\int,\iint,\iiint,\oint,\oiint\<br>\int_{-\infty}^0 f(x),\text dx<br>$$</p><p>$$<br>a,a\<br>a\ a\<br>a\quad a\<br>a\qquad a\<br>$$</p><h1 id="标注符号"><a href="#标注符号" class="headerlink" title="标注符号"></a>标注符号</h1><p>$$<br>\vec x, \overrightarrow {AB}\<br>\bar x, \overline{AB}\<br>$$</p><h1 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h1><p>$$<br>\leftarrow,\rightarrow,\Rightarrow,\leftrightarrow,\longleftarrow<br>$$</p><h1 id="括号与定界符"><a href="#括号与定界符" class="headerlink" title="括号与定界符"></a>括号与定界符</h1><p>$$<br>()[] { } \<br>\lceil,\rceil,\lfloor,\rfloor,||\<br>\left(0,\frac 1 a\right]\<br>\left.\frac {∂f}{∂x}\right|_{x&#x3D;0}<br>$$</p><h1 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h1><p>$$<br>\begin{align}</p><p>a&amp;&#x3D;b+c+d\<br>&amp;&#x3D;e+f</p><p>\end{align}<br>$$</p><h1 id="大括号"><a href="#大括号" class="headerlink" title="大括号"></a>大括号</h1><p>$$<br>f(x)&#x3D;</p><p>\begin{cases}</p><p>\sin x, &amp;-π\le x \le π\<br>0,&amp;\text {其他}</p><p>\end{cases}<br>$$</p><h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>$$<br>\begin{matrix}</p><p>a &amp; b &amp; \cdots &amp; c \<br>\vdots&amp; \vdots &amp; \ddots &amp; \vdots \<br>e &amp; f &amp; \cdots &amp; g</p><p>\end{matrix}<br>$$</p><p>$$<br>\begin{bmatrix}</p><p>a &amp; b &amp; \cdots &amp; c \<br>\vdots&amp; \vdots &amp; \ddots &amp; \vdots \<br>e &amp; f &amp; \cdots &amp; g</p><p>\end{bmatrix}<br>$$</p><p>$$<br>\begin{pmatrix}</p><p>a &amp; b &amp; \cdots &amp; c \<br>\vdots&amp; \vdots &amp; \ddots &amp; \vdots \<br>e &amp; f &amp; \cdots &amp; g</p><p>\end{pmatrix}<br>$$</p><p>$$<br>\begin{vmatrix}</p><p>a &amp; b &amp; \cdots &amp; c \<br>\vdots&amp; \vdots &amp; \ddots &amp; \vdots \<br>e &amp; f &amp; \cdots &amp; g</p><p>\end{vmatrix}<br>$$</p><p>$$<br>\bf A, \bf B^{\rm T}<br>$$</p><h1 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h1><p>$$<br>f(x) &#x3D; \frac 1 {\sqrt{2π} \sigma} {\rm e}^{-\frac{(x-\mu)^2} {2\sigma^2}} \<br>f(x) &#x3D; \frac 1 {\sqrt{2π} \sigma} \exp \left[{-\frac{(x-\mu)^2} {2\sigma^2}}\right]<br>$$</p><p>$$<br>\lim \limits _{N\to \infty} P \left{ \left| \frac{I \left( \alpha_i \right)}{N} - H(s)\right| &lt; \varepsilon  \right} &#x3D;1<br>$$</p><p>$$<br>x(n) &#x3D; \frac 1 {2π} \int_{-π} ^π X\left( \rm e ^{\rm j \omega }\right) \rm e ^{\rm j \omega n} , {\rm d} \omega<br>$$</p><p>$$<br>\begin{align}</p><p>\vec B \left( \vec r\right) &amp;&#x3D; \frac {\mu_0} {4π} \oint_C \frac {I , {\rm d} \vec l \times \vec R}{R^3}\<br>&amp;&#x3D; \frac {\mu_0} {4π} \int_V \frac{\vec J_V \times \vec R}{R^3},{\rm d} V’</p><p>\end{align}<br>$$</p>]]></content>
       
@@ -63,8 +63,8 @@
     
     <entry>
       <title>表头文件</title>
-      <link href="/2022/08/12/0812/01demo/"/>
-      <url>/2022/08/12/0812/01demo/</url>
+      <link href="/2022/08/12/help/01demo/"/>
+      <url>/2022/08/12/help/01demo/</url>
       
         <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(</span><br><span class="line">    <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
       
@@ -90,8 +90,8 @@
     
     <entry>
       <title>hello-world</title>
-      <link href="/2022/08/12/0812/hello-world/"/>
-      <url>/2022/08/12/0812/hello-world/</url>
+      <link href="/2022/08/12/help/hello-world/"/>
+      <url>/2022/08/12/help/hello-world/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
