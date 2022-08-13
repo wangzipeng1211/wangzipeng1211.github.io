@@ -4,7 +4,94 @@
   
     
     <entry>
-      <title>RL分类</title>
+      <title>RL 03——马尔可夫决策过程</title>
+      <link href="/2022/08/13/RL/03%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/"/>
+      <url>/2022/08/13/RL/03%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/img/RL/03_RL.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RL 02——探索与利用（多臂老虎机）</title>
+      <link href="/2022/08/13/RL/02%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%88%A9%E7%94%A8_MAD/"/>
+      <url>/2022/08/13/RL/02%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%88%A9%E7%94%A8_MAD/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/img/RL/02_RL.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RL 01——RL简介</title>
+      <link href="/2022/08/13/RL/01%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/"/>
+      <url>/2022/08/13/RL/01%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/img/RL/01_RL.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RL 00——RL分类</title>
       <link href="/2022/08/13/RL/00%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB/"/>
       <url>/2022/08/13/RL/00%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB/</url>
       
