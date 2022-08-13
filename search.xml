@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>Pytorch 01——Numpy与Torch对比</title>
+      <link href="/2022/08/13/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/01Numpy%E4%B8%8ETorch%E5%AF%B9%E6%AF%94/"/>
+      <url>/2022/08/13/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/01Numpy%E4%B8%8ETorch%E5%AF%B9%E6%AF%94/</url>
+      
+        <content type="html"><![CDATA[<h1 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure><h1 id="创造数据"><a href="#创造数据" class="headerlink" title="创造数据"></a>创造数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np_data = np.arange(<span class="number">6</span>).reshape((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">torch_data = torch.from_numpy(np_data)</span><br><span class="line">tensor2array = torch_data.numpy()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, np_data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;torch:&#x27;</span>, torch_data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;tensor2array:&#x27;</span>, tensor2array)</span><br></pre></td></tr></table></figure><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p><img src="/img/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/01/01.jpg"></p><h1 id="求绝对值、sin值、平均值"><a href="#求绝对值、sin值、平均值" class="headerlink" title="求绝对值、sin值、平均值"></a>求绝对值、sin值、平均值</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">data = [-<span class="number">1</span>, -<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>]</span><br><span class="line">tensor = torch.FloatTensor(data)  <span class="comment"># 32bit  ## 转换成32位浮点tensor</span></span><br><span class="line"><span class="comment"># abs</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;abs&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, np.<span class="built_in">abs</span>(data))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;torch:&#x27;</span>,torch.<span class="built_in">abs</span>(tensor))</span><br><span class="line"></span><br><span class="line"><span class="comment"># sin  </span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;sin&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, np.sin(data))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;torch:&#x27;</span>,torch.sin(tensor))</span><br><span class="line"></span><br><span class="line"><span class="comment"># mean</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;mean&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, np.mean(data))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;torch:&#x27;</span>,torch.mean(tensor))</span><br></pre></td></tr></table></figure><h2 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h2><p><img src="/img/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/01/02.jpg"></p><h1 id="求矩阵乘法"><a href="#求矩阵乘法" class="headerlink" title="求矩阵乘法"></a>求矩阵乘法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>]]</span><br><span class="line">tensor = torch.FloatTensor(data)  <span class="comment"># 32-bit floating point</span></span><br><span class="line">data = np.array(data)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, np.matmul(data, data))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;torch:&#x27;</span>, torch.mm(tensor, tensor))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;numpy:&#x27;</span>, data.dot(data))</span><br></pre></td></tr></table></figure><h2 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h2><p><img src="/img/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/01/03.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> Pytorch </category>
+          
+          <category> 跟着莫凡学pytorch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RL 03——马尔可夫决策过程</title>
       <link href="/2022/08/13/RL/03%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/"/>
       <url>/2022/08/13/RL/03%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B/</url>
