@@ -4,11 +4,69 @@
   
     
     <entry>
+      <title>RL 07——蒙特卡洛价值预测</title>
+      <link href="/2022/08/22/RL/07%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BB%B7%E5%80%BC%E9%A2%84%E6%B5%8B/"/>
+      <url>/2022/08/22/RL/07%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E4%BB%B7%E5%80%BC%E9%A2%84%E6%B5%8B/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/img/../../../img/RL/07_RL.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RL 06——蒙特卡洛方法</title>
+      <link href="/2022/08/17/RL/06%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E6%96%B9%E6%B3%95/"/>
+      <url>/2022/08/17/RL/06%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/img/../../../img/RL/06_RL.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> RL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RL </tag>
+            
+            <tag> DL </tag>
+            
+            <tag> ML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Pytorch 07——保存提取</title>
       <link href="/2022/08/17/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/07%E4%BF%9D%E5%AD%98%E6%8F%90%E5%8F%96/"/>
       <url>/2022/08/17/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/07%E4%BF%9D%E5%AD%98%E6%8F%90%E5%8F%96/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">torch.manual_seed(<span class="number">1</span>)    <span class="comment"># reproducible</span></span><br></pre></td></tr></table></figure><h1 id="创造数据"><a href="#创造数据" class="headerlink" title="创造数据"></a>创造数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假数据</span></span><br><span class="line">x = torch.unsqueeze(torch.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">100</span>), dim=<span class="number">1</span>)  <span class="comment"># x data (tensor), shape=(100, 1)</span></span><br><span class="line">y = x.<span class="built_in">pow</span>(<span class="number">2</span>) + <span class="number">0.2</span>*torch.rand(x.size())  <span class="comment"># noisy y data (tensor), shape=(100, 1)</span></span><br></pre></td></tr></table></figure><h1 id="构建网络并且保存网络"><a href="#构建网络并且保存网络" class="headerlink" title="构建网络并且保存网络"></a>构建网络并且保存网络</h1><p>保存网络分两种：  </p><ul><li>一种为保存整个网络</li><li>另外一种为只保存网络中的参数</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">save</span>():</span><br><span class="line">    <span class="comment"># 建网络</span></span><br><span class="line">    net1 = torch.nn.Sequential(</span><br><span class="line">        torch.nn.Linear(<span class="number">1</span>, <span class="number">10</span>),</span><br><span class="line">        torch.nn.ReLU(),</span><br><span class="line">        torch.nn.Linear(<span class="number">10</span>, <span class="number">1</span>)</span><br><span class="line">    )</span><br><span class="line">    optimizer = torch.optim.SGD(net1.parameters(), lr=<span class="number">0.5</span>)</span><br><span class="line">    loss_func = torch.nn.MSELoss()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        prediction = net1(x)</span><br><span class="line">        loss = loss_func(prediction, y)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    torch.save(net1, <span class="string">&#x27;net.pkl&#x27;</span>)  <span class="comment"># 保存整个网络————方法1</span></span><br><span class="line">    torch.save(net1.state_dict(), <span class="string">&#x27;net_params.pkl&#x27;</span>)  <span class="comment"># 只保存网络中的参数（速度快，占内存少）————方法2</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># plot result</span></span><br><span class="line">    plt.figure(<span class="number">1</span>, figsize=(<span class="number">10</span>, <span class="number">3</span>))</span><br><span class="line">    plt.subplot(<span class="number">131</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;Net1&#x27;</span>)</span><br><span class="line">    plt.scatter(x.data.numpy(), y.data.numpy())</span><br><span class="line">    plt.plot(x.data.numpy(), prediction.data.numpy(), <span class="string">&#x27;r-&#x27;</span>, lw=<span class="number">5</span>)</span><br></pre></td></tr></table></figure><h1 id="提取网络1————全部网络"><a href="#提取网络1————全部网络" class="headerlink" title="提取网络1————全部网络"></a>提取网络1————全部网络</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">restore_net</span>():</span><br><span class="line">    net2 = torch.load(<span class="string">&#x27;net.pkl&#x27;</span>)</span><br><span class="line">    prediction = net2(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># plot result</span></span><br><span class="line">    plt.figure(<span class="number">1</span>, figsize=(<span class="number">10</span>, <span class="number">3</span>))</span><br><span class="line">    plt.subplot(<span class="number">132</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;Net2&#x27;</span>)</span><br><span class="line">    plt.scatter(x.data.numpy(), y.data.numpy())</span><br><span class="line">    plt.plot(x.data.numpy(), prediction.data.numpy(), <span class="string">&#x27;r-&#x27;</span>, lw=<span class="number">5</span>)</span><br></pre></td></tr></table></figure><h1 id="提取网络2————网络中的参数"><a href="#提取网络2————网络中的参数" class="headerlink" title="提取网络2————网络中的参数"></a>提取网络2————网络中的参数</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">restore_paras</span>():</span><br><span class="line">    net3 = torch.nn.Sequential(</span><br><span class="line">        torch.nn.Linear(<span class="number">1</span>, <span class="number">10</span>),</span><br><span class="line">        torch.nn.ReLU(),</span><br><span class="line">        torch.nn.Linear(<span class="number">10</span>, <span class="number">1</span>)</span><br><span class="line">    )</span><br><span class="line">    net3.load_state_dict(torch.load(<span class="string">&#x27;net_params.pkl&#x27;</span>))</span><br><span class="line">    prediction = net3(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># plot result</span></span><br><span class="line">    plt.figure(<span class="number">1</span>, figsize=(<span class="number">10</span>, <span class="number">3</span>))</span><br><span class="line">    plt.subplot(<span class="number">133</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;Net3&#x27;</span>)</span><br><span class="line">    plt.scatter(x.data.numpy(), y.data.numpy())</span><br><span class="line">    plt.plot(x.data.numpy(), prediction.data.numpy(), <span class="string">&#x27;r-&#x27;</span>, lw=<span class="number">5</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure><h1 id="应用函数"><a href="#应用函数" class="headerlink" title="应用函数"></a>应用函数</h1><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p><img src="/../../../../img/python/Pytorch/%E8%B7%9F%E7%9D%80%E8%8E%AB%E5%87%A1%E5%AD%A6pytorch/07/01.jpg"></p>]]></content>
       
       
       <categories>
