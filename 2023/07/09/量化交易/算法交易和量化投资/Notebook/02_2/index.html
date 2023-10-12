@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>算法交易和量化投资02(续1) | Quant 4ever</title><meta name="keywords" content="算法交易和量化投资"><meta name="author" content="Eddie"><meta name="copyright" content="Eddie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="2.2numpy、pandas、matplotlib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法交易和量化投资02(续1)">
+<meta property="og:url" content="https://wangzipeng1211.github.io/2023/07/09/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/index.html">
+<meta property="og:site_name" content="Quant 4ever">
+<meta property="og:description" content="2.2numpy、pandas、matplotlib">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wangzipeng1211.github.io/img/cover.png">
+<meta property="article:published_time" content="2023-07-09T09:50:06.521Z">
+<meta property="article:modified_time" content="2023-09-12T14:06:05.737Z">
+<meta property="article:author" content="Eddie">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Quant">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wangzipeng1211.github.io/img/cover.png"><link rel="shortcut icon" href="/img/alpha.png"><link rel="canonical" href="https://wangzipeng1211.github.io/2023/07/09/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"该文章创建于","messageNext":"天前, 请以最新文章为主"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Eddie","link":"链接: ","source":"来源: Quant 4ever","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '算法交易和量化投资02(续1)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-12 22:06:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/alpha.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Timeline</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> list</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> about</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Quant 4ever</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Timeline</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> list</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> about</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">算法交易和量化投资02(续1)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-09T09:50:06.521Z" title="发表于 2023-07-09 17:50:06">2023-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-12T14:06:05.737Z" title="更新于 2023-09-12 22:06:05">2023-09-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/">量化交易</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/">算法交易和量化投资</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="算法交易和量化投资02(续1)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="2python进阶"><a class="markdownIt-Anchor" href="#2python进阶"></a> 2.python进阶</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Jupyter notebook 输出多行结果</span></span><br><span class="line"><span class="keyword">from</span> IPython.core.interactiveshell <span class="keyword">import</span> InteractiveShell</span><br><span class="line">InteractiveShell.ast_node_interactivity = <span class="string">&quot;all&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="21-numpy"><a class="markdownIt-Anchor" href="#21-numpy"></a> 2.1 Numpy</h2>
+<p>NumPy（Numerical Python的简称）是Python数值计算最重要的基础包。大多数提供科学计算的包都是用NumPy的数组作为构建基础。</p>
+<p>NumPy的部分功能如下：</p>
+<blockquote>
+<ul>
+<li>ndarray，一个具有矢量算术运算和复杂广播能力的快速且节省空间的多维数组。</li>
+</ul>
+</blockquote>
+<ul>
+<li>用于对整组数据进行快速运算的标准数学函数（无需编写循环）。</li>
+<li>用于读写磁盘数据的工具以及用于操作内存映射文件的工具。</li>
+<li>线性代数、随机数生成以及傅里叶变换功能。</li>
+<li>用于集成由C、C++、Fortran等语言编写的代码的API。</li>
+</ul>
+<p>对于大部分数据分析应用而言，我最关注的功能主要集中在：</p>
+<blockquote>
+<ul>
+<li>用于数据整理和清理、子集构造和过滤、转换等快速的矢量化数组运算。</li>
+</ul>
+</blockquote>
+<ul>
+<li>常用的数组算法，如排序、唯一化、集合运算等。</li>
+<li>高效的描述统计和数据聚合/摘要运算。</li>
+<li>用于异构数据集的合并/连接运算的数据对齐和关系型数据运算。</li>
+<li>将条件逻辑表述为数组表达式（而不是带有if-elif-else分支的循环）。</li>
+<li>数据的分组运算（聚合、转换、函数应用等）。</li>
+</ul>
+<p>NumPy之于数值计算特别重要的原因之一，是因为它可以高效处理大数组的数据。这是因为：</p>
+<blockquote>
+<ul>
+<li>NumPy是在一个连续的内存块中存储数据，独立于其他Python内置对象。NumPy的C语言编写的算法库可以操作内存，而不必进行类型检查或其它前期工作。比起Python的内置序列，NumPy数组使用的内存更少。</li>
+</ul>
+</blockquote>
+<ul>
+<li>NumPy可以在整个数组上执行复杂的计算，而不需要Python的for循环。</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/?v=20210922070456">NumPy帮助文档</a></li>
+</ul>
+<h3 id="导入numpy"><a class="markdownIt-Anchor" href="#导入numpy"></a> 导入Numpy</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="built_in">print</span>(numpy.__version__)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/01.png" alt="01"></p>
+<h3 id="创建数组"><a class="markdownIt-Anchor" href="#创建数组"></a> 创建数组</h3>
+<h4 id="使用array函数创建数组"><a class="markdownIt-Anchor" href="#使用array函数创建数组"></a> 使用array函数创建数组</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">array1=np.array(<span class="built_in">range</span>(<span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(array1))</span><br><span class="line"><span class="built_in">print</span>(array1)</span><br><span class="line"><span class="built_in">print</span>(array1.shape) </span><br><span class="line">array1.shape=<span class="number">2</span>,<span class="number">3</span> <span class="comment">#修改shape属性，变为二维结构</span></span><br><span class="line"><span class="built_in">print</span>(array1)</span><br><span class="line"></span><br><span class="line">array3=np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</span><br><span class="line"><span class="built_in">print</span>(array3)</span><br><span class="line"><span class="built_in">print</span>(array3.shape)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/02.png" alt="02"></p>
+<h4 id="使用arange函数创建数组"><a class="markdownIt-Anchor" href="#使用arange函数创建数组"></a> 使用arange函数创建数组</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">array4=np.arange(<span class="number">13</span>,<span class="number">1</span>,-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(array4)</span><br><span class="line">array4.shape=<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span></span><br><span class="line">array4</span><br><span class="line">array4.reshape((<span class="number">3</span>,-<span class="number">1</span>)) <span class="comment"># reshape多维数组被重塑;－1，它表示该维度的大小由数据本身推断而来</span></span><br><span class="line"></span><br><span class="line">np.linspace(<span class="number">1</span>,<span class="number">12</span>,<span class="number">12</span>)   <span class="comment"># 起始值、结束值、元素的个数，包括结束值</span></span><br><span class="line"> </span><br><span class="line">np.linspace(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>)     <span class="comment"># 起始值、结束值、元素的个数，包括结束值</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/03.png" alt="03"></p>
+<h4 id="利用-zeros-ones-empty-random-函数生成数组"><a class="markdownIt-Anchor" href="#利用-zeros-ones-empty-random-函数生成数组"></a> 利用 zeros、ones、empty、random 函数生成数组</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros( (<span class="number">2</span>,<span class="number">3</span>) )  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a=&#x27;</span>,a)</span><br><span class="line">b = np.ones((<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>),dtype=np.int16)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;b=&#x27;</span>,b)</span><br><span class="line">c = np.empty( (<span class="number">3</span>,<span class="number">2</span>) )</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c=&#x27;</span>,c)</span><br><span class="line">d = np.random.randn(<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;d=&#x27;</span>,d) </span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/04.png" alt="04"></p>
+<h3 id="基本的索引和切片"><a class="markdownIt-Anchor" href="#基本的索引和切片"></a> 基本的索引和切片</h3>
+<p>NumPy数组的索引是一个内容丰富的主题，因为选取数据子集或单个元素的方式有很多。一维数组很简单。从表面上看，它们跟Python列表的功能差不多。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a1=np.linspace(<span class="number">1</span>,<span class="number">26</span>,<span class="number">6</span>, dtype=<span class="built_in">int</span>)</span><br><span class="line"><span class="built_in">print</span>(a1)</span><br><span class="line"></span><br><span class="line">a2=a1[<span class="number">0</span>:<span class="number">3</span>:<span class="number">1</span>]</span><br><span class="line">a22=a1[a1&gt;<span class="number">10</span>] <span class="comment"># 布尔型索引</span></span><br><span class="line"><span class="built_in">print</span>(a2)</span><br><span class="line"><span class="built_in">print</span>(a22)</span><br><span class="line"></span><br><span class="line">a1[<span class="number">0</span>]=<span class="number">19</span></span><br><span class="line"><span class="built_in">print</span>(a2[<span class="number">0</span>])  <span class="comment"># 通过索引赋值共享内存</span></span><br><span class="line"><span class="built_in">print</span>(a1[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>]])</span><br><span class="line"></span><br><span class="line">a3=a1[[<span class="number">0</span>,<span class="number">3</span>,<span class="number">2</span>]]</span><br><span class="line"><span class="built_in">print</span>(a3)</span><br><span class="line"></span><br><span class="line">a1[<span class="number">0</span>]=<span class="number">23</span> </span><br><span class="line"><span class="built_in">print</span>(a3[<span class="number">0</span>])  <span class="comment"># 通过整数数组提取赋值不共享内存</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/05.png" alt="05"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 三维结构</span></span><br><span class="line">array1=np.array(<span class="built_in">range</span>(<span class="number">36</span>))</span><br><span class="line">array1.shape=<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span> <span class="comment"># 修改shape属性，变为三维结构</span></span><br><span class="line"><span class="built_in">print</span>(array1)    <span class="comment"># 三维</span></span><br><span class="line"><span class="built_in">print</span>(array1[<span class="number">0</span>]) <span class="comment"># 二维</span></span><br><span class="line"><span class="built_in">print</span>(array1[<span class="number">0</span>][<span class="number">0</span>], array1[<span class="number">0</span>,<span class="number">0</span>]) <span class="comment"># 一维，可以对各个元素进行递归访问,也可以传入一个以逗号隔开的索引列表来选取单个元素，两种方式等价</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(array1[(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>)]) <span class="comment"># 数，0维</span></span><br><span class="line"><span class="built_in">print</span>(array1[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>])   <span class="comment"># 数，0维，同上</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(array1[[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>]]) <span class="comment"># 分别取三个元素构成一维数组，[array1[1,0,2],array1[1,1,2],array1[0,2,1]]</span></span><br><span class="line"><span class="built_in">print</span>(array1[(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>),(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>)])</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/06.png" alt="06"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 三维结构</span></span><br><span class="line">array1=np.array(<span class="built_in">range</span>(<span class="number">36</span>))</span><br><span class="line">array1.shape=<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span> <span class="comment">#修改shape属性，变为三维结构</span></span><br><span class="line"><span class="built_in">print</span>(array1) <span class="comment"># 三维</span></span><br><span class="line"><span class="built_in">print</span>(array1[[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]])<span class="comment"># 分别取原三维数据的1，1，2个分量（每个分量是二维的）构成一个三维数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/07.png" alt="07"></p>
+<h3 id="通用函数快速的元素级数组函数"><a class="markdownIt-Anchor" href="#通用函数快速的元素级数组函数"></a> 通用函数：快速的元素级数组函数</h3>
+<ul>
+<li>通用函数（即ufunc）是一种对ndarray中的数据执行元素级运算的函数。你可以将其看做简单函数（接受一个或多个标量值，并产生一个或多个标量值）的矢量化包装器。</li>
+<li>许多ufunc都是简单的元素级变体，如sqrt和exp。</li>
+</ul>
+<h4 id="一元ufunc"><a class="markdownIt-Anchor" href="#一元ufunc"></a> 一元ufunc</h4>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/08.png" alt="08"></p>
+<h4 id="二元ufunc"><a class="markdownIt-Anchor" href="#二元ufunc"></a> 二元ufunc</h4>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/09.png" alt="09"></p>
+<h3 id="将条件逻辑表述为数组运算"><a class="markdownIt-Anchor" href="#将条件逻辑表述为数组运算"></a> 将条件逻辑表述为数组运算</h3>
+<p>numpy.where函数是三元表达式x if condition else y的矢量化版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xa=np.random.randn(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">xb=np.zeros((<span class="number">5</span>,<span class="number">3</span>))</span><br><span class="line"><span class="built_in">print</span>(xa)</span><br><span class="line"><span class="built_in">print</span>(np.where(xa&gt;<span class="number">0</span>, xa, xb))</span><br><span class="line"><span class="built_in">print</span>(np.where(xa&gt;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>))  <span class="comment"># np.where的第二个和第三个参数不必是数组，它们都可以是标量值。</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/10.png" alt="10"></p>
+<h3 id="数组的合并和拆分"><a class="markdownIt-Anchor" href="#数组的合并和拆分"></a> 数组的合并和拆分</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">a=np.arange(<span class="number">6</span>).reshape((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">b=np.arange(<span class="number">6</span>,<span class="number">12</span>).reshape((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">np.concatenate([a,b], axis=<span class="number">0</span>) <span class="comment"># 按列做合并，即增加行</span></span><br><span class="line">np.vstack((a,b))              <span class="comment"># 垂直连接</span></span><br><span class="line"></span><br><span class="line">np.concatenate([a,b], axis=<span class="number">1</span>) <span class="comment"># 按行做合并，即增加列</span></span><br><span class="line">np.hstack((a,b))              <span class="comment"># 水平连接</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/11.png" alt="11"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拆分</span></span><br><span class="line">c=np.vstack((a,b))   </span><br><span class="line">np.split(c,[<span class="number">1</span>,<span class="number">3</span>],axis=<span class="number">0</span>)  <span class="comment"># 分别在索引1，3处按行拆分</span></span><br><span class="line">np.split(c,[<span class="number">1</span>],axis=<span class="number">1</span>)    <span class="comment"># 在索引1处按列拆分</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/12.png" alt="12"></p>
+<h3 id="数组的运算"><a class="markdownIt-Anchor" href="#数组的运算"></a> 数组的运算</h3>
+<ul>
+<li>对应分量分别运算</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数组转置</span></span><br><span class="line">array1=np.array(<span class="built_in">range</span>(<span class="number">6</span>))</span><br><span class="line">array1.shape=<span class="number">2</span>,<span class="number">3</span> <span class="comment"># 修改shape属性，变为三维结构</span></span><br><span class="line">array2=array1.T  <span class="comment"># 矩阵转置, np.transpose(array1)</span></span><br><span class="line">array1, array2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加减乘除：对应元素分别相乘</span></span><br><span class="line">array1+array1</span><br><span class="line">np.multiply(array1, array1)</span><br><span class="line">np.<span class="built_in">sum</span>(array1*array1)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/13.png" alt="13"></p>
+<ul>
+<li>数学和统计运算：sum, mean, std, cumsum, cumprod</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">array1=np.array(<span class="built_in">range</span>(<span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(array1)</span><br><span class="line"></span><br><span class="line">stat=[array1.<span class="built_in">sum</span>(), np.<span class="built_in">sum</span>(array1), array1.mean(), array1.std()]</span><br><span class="line"><span class="built_in">print</span>(stat)</span><br><span class="line"></span><br><span class="line">array1.cumsum()</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], [<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]])</span><br><span class="line">arr</span><br><span class="line"><span class="comment"># 行累加</span></span><br><span class="line">arr.cumsum(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 列累乘</span></span><br><span class="line">arr.cumprod(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/14.png" alt="14"></p>
+<ul>
+<li>矩阵运算
+<ul>
+<li>NumPy 通常与 SciPy（Scientific Python）和 Matplotlib（绘图库）一起使用， 这种组合广泛用于替代 MatLab。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xa=np.random.randn(<span class="number">3</span>,<span class="number">3</span>) <span class="comment"># 生成3*3 正态分布随机数矩阵</span></span><br><span class="line">xb=np.diag(xa) <span class="comment"># 矩阵对角线</span></span><br><span class="line">xc=np.diag(xb)</span><br><span class="line">xa</span><br><span class="line">xb</span><br><span class="line">xc </span><br><span class="line">np.trace(xa), np.linalg.det(xa)</span><br><span class="line">np.<span class="built_in">round</span>(np.linalg.inv(xa).dot(xa), <span class="number">1</span>) <span class="comment"># 矩阵乘法</span></span><br><span class="line">np.linalg.eig(xa)</span><br><span class="line">np.linalg.solve(xa, xb) <span class="comment"># 解方程 xa * x= xb</span></span><br><span class="line">np.linalg.lstsq(xa,xb, rcond=<span class="literal">None</span>) <span class="comment"># 解方程 xa * x= xb</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/15.png" alt="15"></p>
+<ul>
+<li>
+<p>基本数组统计方法<br>
+<img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/16.png" alt="16"></p>
+</li>
+<li>
+<p>最常用的线性代数函数<br>
+<img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/17.png" alt="17"></p>
+</li>
+</ul>
+<h3 id="伪随机数生成"><a class="markdownIt-Anchor" href="#伪随机数生成"></a> 伪随机数生成</h3>
+<p>numpy.random模块对Python内置的random进行了补充，增加了一些用于高效生成多种概率分布的样本值的函数。<br><br>
+而Python内置的random模块则只能一次生成一个样本值。<br><br>
+我们说这些都是伪随机数，是因为它们都是通过算法基于随机数生成器种子，在确定性的条件下生成的。你可以用NumPy的np.random.seed更改随机数生成种子</p>
+<ul>
+<li>numpy.random的函数<br>
+<img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/18.png" alt="18"></li>
+</ul>
+<h3 id="用于布尔型数组的方法"><a class="markdownIt-Anchor" href="#用于布尔型数组的方法"></a> 用于布尔型数组的方法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xa=np.random.randn(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line">xa</span><br><span class="line">(xa&gt;<span class="number">0</span>).<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># any用于测试数组中是否存在一个或多个True，而all则检查数组中所有值是否都是True</span></span><br><span class="line">(xa&gt;<span class="number">0</span>).<span class="built_in">any</span>()</span><br><span class="line">(np.<span class="built_in">abs</span>(xa)&gt;<span class="number">0</span>).<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/19.png" alt="19"><br>
+这两个方法也能用于非布尔型数组，所有非0元素将会被当做True。</p>
+<h3 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">xa=np.random.randn(<span class="number">10</span>)</span><br><span class="line">xa</span><br><span class="line">xa.sort()</span><br><span class="line">xa</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多维数组可以在任何一个轴向上进行排序，只需将轴编号传给sort即可：</span></span><br><span class="line">xb=np.random.randn(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line">xb</span><br><span class="line">xb.sort(<span class="number">0</span>)</span><br><span class="line">xb</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/20.png" alt="20"></p>
+<h3 id="唯一化以及其它的集合逻辑"><a class="markdownIt-Anchor" href="#唯一化以及其它的集合逻辑"></a> 唯一化以及其它的集合逻辑</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xa=np.random.randn(<span class="number">20</span>).astype(np.<span class="built_in">int</span>)</span><br><span class="line">xa</span><br><span class="line">np.unique(xa)</span><br><span class="line"><span class="built_in">set</span>(xa.tolist())</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/21.png" alt="21"></p>
+<p>另一个函数np.in1d用于测试一个数组中的值在另一个数组中的成员资格，返回一个布尔型数组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">9</span>)</span><br><span class="line">np.in1d(np.arange(<span class="number">9</span>),[<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/22.png" alt="22"></p>
+<h4 id="数组的集合运算"><a class="markdownIt-Anchor" href="#数组的集合运算"></a> 数组的集合运算</h4>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/23.png" alt="23"></p>
+<h2 id="22-pandas"><a class="markdownIt-Anchor" href="#22-pandas"></a> 2.2 Pandas</h2>
+<ul>
+<li>它含有使数据清洗和分析工作变得更快更简单的数据结构和操作工具。pandas经常和其它工具一同使用，如数值计算工具NumPy和SciPy，分析库statsmodels和scikit-learn，和数据可视化库matplotlib。pandas是基于NumPy数组构建的，特别是基于数组的函数和不使用for循环的数据处理。<br></li>
+<li>虽然pandas采用了大量的NumPy编码风格，但二者最大的不同是pandas是专门为处理表格和混杂数据设计的。而NumPy更适合处理统一的数值数组数据。<br></li>
+<li>自从2010年pandas开源以来，pandas逐渐成长为一个非常大的库，应用于许多真实案例。开发者社区已经有了800个独立的贡献者，他们在解决日常数据问题的同时为这个项目提供贡献。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="built_in">dir</span>(pd)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/24.png" alt="24"></p>
+<h3 id="series"><a class="markdownIt-Anchor" href="#series"></a> Series</h3>
+<p>Series是一种类似于一维数组的对象，它由一组数据（各种NumPy数据类型）以及一组与之相关的数据标签（即索引）组成。仅由一组数据即可产生最简单的Series：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xa=pd.Series(<span class="built_in">range</span>(<span class="number">2</span>,<span class="number">11</span>))</span><br><span class="line">xa</span><br><span class="line">xa.values</span><br><span class="line">xa.index</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/25.png" alt="25"></p>
+<p>Series的字符串表现形式为：索引在左边，值在右边。由于我们没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。可以通过Series 的values和index属性获取其数组表示形式和索引对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">xa = pd.Series(<span class="built_in">range</span>(<span class="number">4</span>), index=<span class="built_in">list</span>(<span class="string">&#x27;abcd&#x27;</span>))</span><br><span class="line">xa</span><br><span class="line">xa.index</span><br><span class="line">xa.iloc[<span class="number">0</span>:<span class="number">2</span>]       <span class="comment"># 按位置取值</span></span><br><span class="line">xa.iloc[[<span class="number">0</span>,<span class="number">2</span>]]     <span class="comment"># 按位置取值</span></span><br><span class="line">xa.loc[<span class="built_in">list</span>(<span class="string">&#x27;ac&#x27;</span>)] <span class="comment"># 按索引取值</span></span><br><span class="line">xa[xa&gt;<span class="number">1</span>] <span class="comment"># 按条件取值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用NumPy函数或类似NumPy的运算（如根据布尔型数组进行过滤、标量乘法、应用数学函数等）都会保留索引值的链接：</span></span><br><span class="line">xa*<span class="number">2</span></span><br><span class="line">np.sqrt(xa)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还可以将Series看成是一个定长的有序字典，因为它是索引值到数据值的一个映射。它可以用在许多原本需要字典参数的函数中</span></span><br><span class="line">xa[<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;a&#x27;</span> <span class="keyword">in</span> xa</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/26.png" alt="26"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用字典创建Series</span></span><br><span class="line">dicta = <span class="built_in">dict</span>(<span class="built_in">zip</span>(<span class="built_in">list</span>(<span class="string">&#x27;abcd&#x27;</span>), <span class="built_in">range</span>(<span class="number">4</span>))) </span><br><span class="line">dicta</span><br><span class="line">xa = pd.Series(dicta) </span><br><span class="line">xa</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/27.png" alt="27"></p>
+<p>如果只传入一个字典，则结果Series中的索引就是原字典的键（有序排列）。你可以传入排好序的字典的键以改变顺序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sa = <span class="built_in">reversed</span>(<span class="string">&#x27;abcd&#x27;</span>)</span><br><span class="line">sa = <span class="built_in">list</span>(sa)</span><br><span class="line">xa = pd.Series(dicta, index=sa)</span><br><span class="line">xa</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/28.png" alt="28"></p>
+<p>isnull和notnull函数可用于检测缺失数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xa.isnull()</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/29.png" alt="29"></p>
+<p>对于许多应用而言，Series最重要的一个功能是，它会根据运算的索引标签自动对齐数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">xa = pd.Series(<span class="built_in">range</span>(<span class="number">5</span>), index=<span class="built_in">list</span>(<span class="string">&#x27;abcde&#x27;</span>))</span><br><span class="line">xb = pd.Series(<span class="built_in">range</span>(<span class="number">4</span>), index=<span class="built_in">list</span>(<span class="string">&#x27;feca&#x27;</span>))</span><br><span class="line">xa</span><br><span class="line">xb</span><br><span class="line"></span><br><span class="line"><span class="comment"># pd.notna(xa+xb) 是否缺失</span></span><br><span class="line">pd.notna(xa+xb)</span><br><span class="line">xa+xb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找不到对应元素时填充一个特殊值0</span></span><br><span class="line">xa.add(xb, fill_value=<span class="number">0</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除缺省值</span></span><br><span class="line">(xa+xb).dropna() </span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/30.png" alt="30"></p>
+<p>Series对象本身及其索引都有一个name属性，该属性跟pandas其他的关键功能关系非常密切：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xa=pd.Series(<span class="built_in">range</span>(<span class="number">5</span>),index=<span class="built_in">list</span>(<span class="string">&#x27;abcde&#x27;</span>))</span><br><span class="line">xa.name=<span class="string">&#x27;quant&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(xa)</span><br><span class="line"><span class="built_in">print</span>(xa.name)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/31.png" alt="31"></p>
+<p>Series的索引可以通过赋值的方式就地修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(xa.index)</span><br><span class="line"></span><br><span class="line">xa.index=<span class="built_in">list</span>(<span class="string">&#x27;fgjhi&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(xa)</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/32.png" alt="32"></p>
+<h3 id="dataframe"><a class="markdownIt-Anchor" href="#dataframe"></a> DataFrame</h3>
+<p>DataFrame是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔值等）。DataFrame既有行索引也有列索引，它可以被看做由Series组成的字典（共用同一个索引）。DataFrame中的数据是以一个或多个二维块存放的（而不是列表、字典或别的一维数据结构）。<br><br>
+建DataFrame的办法有很多，最常用的一种是直接传入一个由等长列表或NumPy数组组成的字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame([<span class="built_in">range</span>(<span class="number">5</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)])</span><br><span class="line">df</span><br><span class="line"></span><br><span class="line">df.index=<span class="built_in">list</span>(<span class="string">&#x27;abcd&#x27;</span>)     <span class="comment"># 行命名</span></span><br><span class="line">df</span><br><span class="line"></span><br><span class="line">df.columns=<span class="built_in">list</span>(<span class="string">&#x27;efghi&#x27;</span>)  <span class="comment"># 列命名</span></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//../../../../../img/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_2/33.png" alt="33"></p>
+<h2 id="23-matplotlib"><a class="markdownIt-Anchor" href="#23-matplotlib"></a> 2.3 matplotlib</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://wangzipeng1211.github.io/">Eddie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://xxxxxx.com">https://xxxxxx.com</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版权归Quant 4ever所有，如有转载，请注明來自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Quant/">Quant</a></div><div class="post_share"><div class="social-share" data-image="/img/cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.png" target="_blank"><img class="post-qr-code-img" src="/img/wechatpay.png" alt="Wechat"/></a><div class="post-qr-code-desc">Wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="Alipay"/></a><div class="post-qr-code-desc">Alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/11/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_3/"><img class="prev-cover" src="/img/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">算法交易和量化投资02(续2)</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/16/Math/ODE/Notebook/01-2/"><img class="next-cover" src="/img/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ODE第一章（2） 微分方程的几何解释</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/21/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_1/" title="算法交易和量化投资02"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-21</div><div class="title">算法交易和量化投资02</div></div></a></div><div><a href="/2023/07/11/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/02_3/" title="算法交易和量化投资02(续2)"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-11</div><div class="title">算法交易和量化投资02(续2)</div></div></a></div><div><a href="/2023/07/15/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/03/" title="算法交易和量化投资03"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-15</div><div class="title">算法交易和量化投资03</div></div></a></div><div><a href="/2023/07/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/%E7%AE%97%E6%B3%95%E4%BA%A4%E6%98%93%E5%92%8C%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84/Notebook/04/" title="算法交易和量化投资04"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-20</div><div class="title">算法交易和量化投资04</div></div></a></div><div><a href="/2023/08/30/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/Python%20and%20Statistics%20for%20Financial%20Analysis/Week1/Note/" title="Python and Statistics for Financial Analysis Week1"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-30</div><div class="title">Python and Statistics for Financial Analysis Week1</div></div></a></div><div><a href="/2023/09/01/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/Python%20and%20Statistics%20for%20Financial%20Analysis/Week2/Note/" title="Python and Statistics for Financial Analysis Week2"><img class="cover" src="/img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-01</div><div class="title">Python and Statistics for Financial Analysis Week2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2python%E8%BF%9B%E9%98%B6"><span class="toc-text"> 2.python进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-numpy"><span class="toc-text"> 2.1 Numpy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5numpy"><span class="toc-text"> 导入Numpy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-text"> 创建数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8array%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-text"> 使用array函数创建数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8arange%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-text"> 使用arange函数创建数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-zeros-ones-empty-random-%E5%87%BD%E6%95%B0%E7%94%9F%E6%88%90%E6%95%B0%E7%BB%84"><span class="toc-text"> 利用 zeros、ones、empty、random 函数生成数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="toc-text"> 基本的索引和切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0%E5%BF%AB%E9%80%9F%E7%9A%84%E5%85%83%E7%B4%A0%E7%BA%A7%E6%95%B0%E7%BB%84%E5%87%BD%E6%95%B0"><span class="toc-text"> 通用函数：快速的元素级数组函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E5%85%83ufunc"><span class="toc-text"> 一元ufunc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%85%83ufunc"><span class="toc-text"> 二元ufunc</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%9D%A1%E4%BB%B6%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BF%B0%E4%B8%BA%E6%95%B0%E7%BB%84%E8%BF%90%E7%AE%97"><span class="toc-text"> 将条件逻辑表述为数组运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%88%E5%B9%B6%E5%92%8C%E6%8B%86%E5%88%86"><span class="toc-text"> 数组的合并和拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%AE%97"><span class="toc-text"> 数组的运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90"><span class="toc-text"> 伪随机数生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%B8%83%E5%B0%94%E5%9E%8B%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text"> 用于布尔型数组的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-text"> 排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E5%8C%96%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E9%9B%86%E5%90%88%E9%80%BB%E8%BE%91"><span class="toc-text"> 唯一化以及其它的集合逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97"><span class="toc-text"> 数组的集合运算</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-pandas"><span class="toc-text"> 2.2 Pandas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#series"><span class="toc-text"> Series</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataframe"><span class="toc-text"> DataFrame</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-matplotlib"><span class="toc-text"> 2.3 matplotlib</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Eddie</div><div class="footer_custom_text">梧高凤必至, 花香蝶自来</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
